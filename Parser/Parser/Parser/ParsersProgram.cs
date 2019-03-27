@@ -11,14 +11,17 @@ namespace Parser
         static void Main(string[] args)
         {
             //Console.WriteLine("Imprimindo S -> SS+ | SS- | a \nDigitar valores desejados \nPara Teste utilizar 5-4 com saida 54- ou 7+8 com saida 78+");
-            //ParserPos parsepos = new ParserPos();
+            //var parsepos = new ParserPos();
             //parsepos.expr();
             //Console.Write("\n\n");
             //Console.In.Read();
-            Console.WriteLine("Imprimindo S -> +SS | -SS | a \nDigitar valores desejados \nPara Teste utilizar 1-3 com saida -13 ou 4+5 com saida +45");
-            ParserPre parserPre = new ParserPre();
-            parserPre.expr();
-            Console.Write("\n");
+            //Console.WriteLine("Imprimindo S -> +SS | -SS | a \nDigitar valores desejados \nPara Teste utilizar 1-3 com saida -13 ou 4+5 com saida +45");
+            //var parserPre = new ParserPre();
+            //Console.Write("\n\n");
+            //Console.In.Read();
+            Console.WriteLine("Imprimindo S ->S(S)S | E\nDigitar valores desejados");
+            var parseParenthesis = new ParserParenthesis();
+            parseParenthesis.expr();
         }
     }
 
@@ -69,7 +72,6 @@ namespace Parser
                     term();
                     Console.Write('-');
                 }
-                else return;
             }
         }
     }
@@ -120,26 +122,51 @@ namespace Parser
 
     public class ParserParenthesis : Parser
     {
-        public void term() { }
+        public int counter;
+        public ParserParenthesis()
+        {
+            lookAhead = Console.In.Read();
+        }
+
+        public void term()
+        {
+            if ('(' == (char)lookAhead)
+            {
+                counter++;
+                Console.Write((char)lookAhead);
+                match(lookAhead);
+            }
+            else if ((char)lookAhead == ')' && counter > 0)
+            {
+                counter--;
+                Console.Write((char)lookAhead);
+                match(lookAhead);
+            }
+            else
+                throw new Exception("Syntax Error");
+        }
 
         public override void expr()
         {
-            term();
             while (true)
             {
-                if (lookAhead == '+')
+                switch (lookAhead)
                 {
-                    match('+');
-                    term();
-                    Console.Write('-');
+                    case '(':
+                    case ')':
+                        term();
+                        break;
+                    default:
+                        if ((lookAhead == 13 && counter == 0) || lookAhead == ' ' && counter == 0) // 13 é o valor de enter em ASCII
+                        {
+                            Console.Write('\n');
+                        }
+                        else
+                            throw new Exception("Syntax Error");
+
+                        return;
                 }
-                else if (lookAhead == '-')
-                {
-                    match('-');
-                    term();
-                    Console.Write('-');
-                }
-                else return;
             }
         }
+    }
 }
