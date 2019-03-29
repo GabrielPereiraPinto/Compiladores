@@ -5,3 +5,9 @@ C:\Senac\Compiladores\Parser\Parser\Parser\obj\Debug\Parser.csprojAssemblyRefere
 C:\Senac\Compiladores\Parser\Parser\Parser\obj\Debug\Parser.csproj.CoreCompileInputs.cache
 C:\Senac\Compiladores\Parser\Parser\Parser\obj\Debug\Parser.exe
 C:\Senac\Compiladores\Parser\Parser\Parser\obj\Debug\Parser.pdb
+C:\Compiladores\Parser\Parser\Parser\bin\Debug\Parser.exe.config
+C:\Compiladores\Parser\Parser\Parser\bin\Debug\Parser.exe
+C:\Compiladores\Parser\Parser\Parser\bin\Debug\Parser.pdb
+C:\Compiladores\Parser\Parser\Parser\obj\Debug\Parser.csproj.CoreCompileInputs.cache
+C:\Compiladores\Parser\Parser\Parser\obj\Debug\Parser.exe
+C:\Compiladores\Parser\Parser\Parser\obj\Debug\Parser.pdb
